@@ -1,0 +1,35 @@
+syntax = "proto3";
+package kv.v1;
+option go_package = "neiro-kv/pkg/gen/kv/v1;kv";
+
+service KvService {
+  rpc Set(SetKvRequest) returns (SetKvResponse) {}
+  rpc Get(GetKvRequest) returns (GetKvResponse) {}
+  rpc Delete(DeleteKvRequest) returns (DeleteKvResponse) {}
+}
+
+message SetKvRequest {
+  string key = 1;
+  string value = 2;
+  uint64 ttl_sec = 3;
+}
+
+message SetKvResponse {
+}
+
+message GetKvRequest {
+  string key = 1;
+}
+
+message GetKvResponse {
+  string value = 1;
+  bool found = 2;
+}
+
+message DeleteKvRequest {
+  string key = 1;
+}
+
+message DeleteKvResponse {
+  bool found = 1;
+}
